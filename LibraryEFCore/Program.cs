@@ -1,3 +1,22 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using LibraryEFCore.Db;
+using LibraryEFCore.Db.Entity;
 
-Console.WriteLine("Hello, World!");
+using var context = new BooksDbContext();
+var author = new Author
+{
+    FirstName = "John",
+    LastName = "Doe",
+    Books = new List<Book>
+    {
+        new()
+        {
+            Title = "Book 1",
+        },
+        new()
+        {
+            Title = "Book 2",
+        }
+    }
+};
+context.Add(author);
+context.SaveChanges();
